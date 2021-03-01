@@ -1,0 +1,68 @@
+apply plugin: 'com.alibaba.arouter'
+buildscript {
+    ext.kotlin_version = '1.4.30'
+    repositories {
+        google()
+        jcenter()
+        maven{
+            url 'https://maven.google.com'
+        }
+        maven {
+            url "https://jitpack.io"
+        }
+
+    }
+    dependencies {
+        classpath 'com.android.tools.build:gradle:4.1.2'
+        classpath "org.jetbrains.kotlin:kotlin-gradle-plugin:$kotlin_version"
+        //这个插件是在 transform jar 的时候直接把路由表通过 asm 工具直接写到 sdk 的类里面，就不用启动的时候扫描 dex 了，用于支持第三方App加固时自动注册
+        classpath 'com.alibaba:arouter-register:1.0.2'
+//        classpath 'com.hujiang.aspectjx:gradle-android-plugin-aspectjx:2.0.10'
+    }
+}
+
+allprojects {
+    repositories {
+        google()
+        jcenter()
+        maven{
+            url 'https://maven.google.com'
+        }
+        maven {
+            url "https://jitpack.io"
+        }
+    }
+}
+
+task clean(type: Delete) {
+    delete rootProject.buildDir
+}
+
+ext {
+    isModule = false //设置false即不是将model作为单独应用
+    android = [
+            minSdkVersion    : 21,
+            targetSdkVersion : 30,
+            compileSdkVersion: 30,
+            buildToolsVersion: "30.0.3",
+            versionCode      : 100,
+            versionName      : "1.0.0",
+            applicationId    : "com.lazyxu.mvvmlazy"
+    ]
+
+    dependencies = [
+            arouter          : "1.5.1",
+            arouter_compiler : "1.5.1"
+
+    ]
+}
+
+//subprojects{//subprojects是对所有Child Project的配置
+//    afterEvaluate {
+//        android{
+//            //resourcePrefix约束资源前缀，只能限定Xml资源（不同model命名相同造成资源冲突）
+//            resourcePrefix "${project.name}_"
+//        }
+//    }
+//}
+

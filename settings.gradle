@@ -1,0 +1,6 @@
+include ':lib_res'
+include ':film'
+include ':user'
+include ':base_common'
+include ':app'
+rootProject.name = "MvvmLazy"

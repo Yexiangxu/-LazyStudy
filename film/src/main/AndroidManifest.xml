@@ -1,0 +1,17 @@
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    package="com.lazyxu.film">
+
+    <application>
+        <activity android:name=".FilmActivity">
+
+            <intent-filter>
+
+                <action android:name="wo.shi.outer.project.main.activity.action" />
+
+                <category android:name="android.intent.category.DEFAULT" />
+
+            </intent-filter>
+
+        </activity>
+    </application>
+</manifest>

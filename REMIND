@@ -1,0 +1,57 @@
+1. 使用androidx
+
+2. 图片
+
+   1. 压缩（使用glide加载多个大图容易引起内存溢出）
+   2. GlidePalette智能配色给自己设置多彩的阴影
+   3. LuBan与Compressor压缩
+   4. 头像拍照和相册获取剪切
+
+3. Recyclerview
+   1. 瀑布流
+
+4. 用jsoup解析html
+
+5. 组件化
+
+   1. [微信支付分享组件化](https://github.com/pokercc/CustomPackage)
+   2. [fragment问题](https://juejin.im/post/5c46e6fb6fb9a049a5713bcc)
+
+#### xml属性
+android:adjustViewBounds="true"
+解决图片变形问题
+
+
+
+3. 适配
+
+- 今日头条屏幕适配
+- 权限适配（6.0危险权限；7.0拍照、安装apk、相册截图）
+- 全面屏、刘海屏适配；电池栏适配（https://github.com/gyf-dev/ImmersionBar）
+> 注意`AndroidManifest.xml`中需要先添加下面配置
+>```
+>        <!-- 适配全面屏 -->
+>        <meta-data
+>            android:name="android.max_aspect"
+>            android:value="2.4" />
+>        <!-- 适配华为(hua wei)刘海屏 -->
+>        <meta-data
+>            android:name="android.notch_support"
+>            android:value="true" />
+>        <!-- 适配小米(xiao mi)刘海屏 -->
+>        <meta-data
+>            android:name="notch.config"
+>            android:value="portrait|landscape" />
+> ```
+
+- icon图标适配
+- 9.0网络适配
+- 通知栏适配（apk下载）
+
+
+2. 数据加载
+https://github.com/KingJA/LoadSir
+
+3. 版本更新
+使用多线程断点续传方式下载（线程1下载1-50，线程2下载51-100部分）
+4. 

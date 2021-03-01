@@ -1,0 +1,79 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.coordinatorlayout.widget.CoordinatorLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+
+    <com.google.android.material.appbar.AppBarLayout
+        android:id="@+id/appbar_layout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@android:color/white"
+
+        android:fitsSystemWindows="true">
+
+        <com.google.android.material.appbar.CollapsingToolbarLayout
+            android:id="@+id/collapse_layout"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            app:contentScrim="@android:color/transparent"
+            app:layout_scrollFlags="scroll|exitUntilCollapsed">
+
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/rvMainTop"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="#fff7f7f7"
+                android:paddingHorizontal="@dimen/dp_10"
+                tools:itemCount="4" />
+
+        </com.google.android.material.appbar.CollapsingToolbarLayout>
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="#fff7f7f7">
+
+            <androidx.appcompat.widget.AppCompatTextView
+                android:id="@+id/tvHotEffect"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                app:layout_constraintLeft_toLeftOf="parent"
+                app:layout_constraintRight_toRightOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                android:layout_marginTop="30dp"
+                android:layout_marginBottom="26dp"
+                android:drawableLeft="@drawable/line_homeleft"
+                android:drawableRight="@drawable/line_homeright"
+                android:drawablePadding="6dp"
+                android:gravity="center"
+                android:text="热门效果"
+                android:textColor="#FF121212"
+                android:textSize="16sp" />
+
+         <!--   <net.lucode.hackware.magicindicator.MagicIndicator
+                android:id="@+id/mainMagicIndicator"
+                android:layout_width="0dp"
+                android:layout_height="48dp"
+                android:overScrollMode="never"
+                android:layout_marginTop="16dp"
+                app:layout_constraintLeft_toLeftOf="parent"
+                app:layout_constraintRight_toRightOf="parent"
+               app:layout_constraintTop_toBottomOf="@+id/tvHotEffect" />-->
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+
+    </com.google.android.material.appbar.AppBarLayout>
+
+    <androidx.viewpager.widget.ViewPager
+        android:id="@+id/mainViewPager"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="#fff7f7f7"
+        android:descendantFocusability="blocksDescendants"
+        app:layout_behavior="@string/appbar_scrolling_view_behavior" />
+
+
+</androidx.coordinatorlayout.widget.CoordinatorLayout>

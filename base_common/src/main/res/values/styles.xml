@@ -1,0 +1,37 @@
+<resources>
+
+   <!--
+
+   <item name="android:textColorPrimary">@color/statusbar_color</item> &lt;!&ndash;返回键处文字颜色&ndash;&gt;
+    <item name="android:textViewStyle">@style/TextAppearance.Text.Regular</item>  &lt;!&ndash;字体样式&ndash;&gt;
+    <item name="android:homeAsUpIndicator">@drawable/ic_arrow_back_white_24px</item>&lt;!&ndash;设置的返回键&ndash;&gt;
+    <item name="android:windowAnimationStyle">@style/AnimationActivity</item>
+    <item name="drawerArrowStyle">@style/MaterialDrawer.DrawerArrowStyle</item>&lt;!&ndash;返回键样式(按要求可选&ndash;&gt;
+    <item name="android:colorControlHighlight">@color/gray</item>&lt;!&ndash;控件按压时的色调&ndash;&gt;
+   -->
+    <style name="AppTheme" parent="Theme.AppCompat.Light.NoActionBar">
+        <item name="colorPrimaryDark">@color/colorPrimary</item><!--状态栏(电池显示)颜色-->
+        <item name="colorPrimary">@color/colorPrimary</item>    <!--Toolbar导航栏的底色-->
+        <item name="colorAccent">@color/colorAccent</item>    <!--CheckBox、RadioButton等控件选中效果默认采用颜色-->
+        <item name="android:colorControlNormal">@color/colorPrimary</item><!--CheckBox，RadioButton等默认状态颜色-->
+        <item name="android:textSize">14sp</item>
+        <item name="android:textColor">@android:color/black</item>
+        <item name="android:textAllCaps">false</item> <!--全部字母是否大些-->
+        <item name="editTextColor">@android:color/black</item><!--EditText 输入框中字体的颜色-->
+        <item name="android:divider">@android:color/darker_gray</item> <!--分割线颜色-->
+        <item name="android:textColorHint">@android:color/darker_gray</item><!--hint 颜色-->
+        <item name="android:typeface">sans</item>  <!--字体样式设置-->
+        <item name="android:windowIsTranslucent">true</item>
+
+
+    </style>
+    <style name="AppTheme.NoActionBar">
+        <item name="windowActionBar">false</item>
+        <item name="windowNoTitle">true</item>
+    </style>
+
+    <style name="AppTheme.AppBarOverlay" parent="ThemeOverlay.AppCompat.Dark.ActionBar" />
+
+    <style name="AppTheme.PopupOverlay" parent="ThemeOverlay.AppCompat.Light" />
+
+</resources>

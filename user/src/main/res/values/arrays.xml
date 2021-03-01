@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string-array name="developDeviceId">
+        <item type="meizu_pro7">e1e30986d1700f62</item>
+        <item type="samsung_galaxy_c7">faf2d0ff3636b6cb</item>
+        <item type="oppo_r11">8d74b4baea93cf82</item>
+        <item type="honor_8">8efbc6912a95d9da</item>
+        <item type="honor_9">77ac245ddfd95b1c</item>
+        <item type="xiaomi_redmi_note_4x">ed7f3064b1d00e3a</item>
+        <item type="vivo_x9s">2b99511a78e1afe0</item>
+        <item type="huawei_android_5">b3872612759354e6</item>
+        <item type="oppo_android_5">639582cedf046ac4</item>
+    </string-array>
+</resources>
