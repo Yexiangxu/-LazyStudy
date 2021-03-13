@@ -1,4 +1,4 @@
-//package com.lazyxu.mvvmlazy
+//package com.lazyxu.lazystudy
 //
 //import android.view.ViewGroup
 //import androidx.fragment.app.Fragment

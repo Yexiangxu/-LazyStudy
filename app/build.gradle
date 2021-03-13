@@ -23,8 +23,8 @@ android {
             arg("AROUTER_MODULE_NAME", project.getName())
         }
     }
-    buildFeatures {
-        dataBinding = true //viewBinding = true
+    buildFeatures{
+        dataBinding = true // for data binding
     }
     compileOptions {
         sourceCompatibility JavaVersion.VERSION_1_8
@@ -55,7 +55,6 @@ android {
 dependencies {
     implementation fileTree(dir: 'libs', include: ['*.jar', '*.aar'])
     testImplementation 'junit:junit:4.13'
-
     implementation 'android.arch.navigation:navigation-fragment:1.0.0'
     implementation 'android.arch.navigation:navigation-ui:1.0.0'
     implementation "android.arch.navigation:navigation-ui-ktx:1.0.0"

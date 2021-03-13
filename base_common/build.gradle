@@ -20,8 +20,8 @@ android {
         buildConfigField ("String", "BUGLY_DEBUG_APPID", quote(BUGLY_DEBUG_APPID))
         buildConfigField ("String", "CHANNEL_QID", quote(CHANNEL_QID))
     }
-    buildFeatures {
-        dataBinding = true
+    buildFeatures{
+        dataBinding = true // for data binding
     }
 
     compileOptions {

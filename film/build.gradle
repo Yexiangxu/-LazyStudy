@@ -27,8 +27,8 @@ android {
             arg("AROUTER_MODULE_NAME", project.getName())
         }
     }
-    buildFeatures {
-        dataBinding = true
+    buildFeatures{
+        dataBinding = true // for data binding
     }
     compileOptions {
         sourceCompatibility JavaVersion.VERSION_1_8

@@ -1,4 +1,4 @@
-//package com.lazyxu.mvvmlazy.utils;
+//package com.lazyxu.lazystudy.utils;
 //
 //import android.content.Context;
 //

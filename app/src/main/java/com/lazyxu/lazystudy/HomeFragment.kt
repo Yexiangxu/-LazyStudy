@@ -1,4 +1,4 @@
-//package com.lazyxu.mvvmlazy
+//package com.lazyxu.lazystudy
 //
 //import android.content.Context
 //import android.graphics.Color
@@ -10,7 +10,7 @@
 //import androidx.fragment.app.Fragment
 //import androidx.lifecycle.ViewModelProvider
 //import androidx.recyclerview.widget.GridLayoutManager
-//import com.lazyxu.mvvmlazy.utils.ScaleTransitionPagerTitleView
+//import com.lazyxu.lazystudy.utils.ScaleTransitionPagerTitleView
 //import kotlinx.android.synthetic.main.fragment_home.*
 //import net.lucode.hackware.magicindicator.ViewPagerHelper
 //import net.lucode.hackware.magicindicator.buildins.UIUtil

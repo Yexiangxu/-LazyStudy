@@ -1,4 +1,4 @@
-package com.lazyxu.mvvmlazy
+package com.lazyxu.lazystudy
 
 import androidx.lifecycle.ViewModel
 

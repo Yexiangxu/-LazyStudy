@@ -1,4 +1,4 @@
-//package com.lazyxu.mvvmlazy
+//package com.lazyxu.lazystudy
 //
 //import android.graphics.Rect
 //import android.os.Bundle
