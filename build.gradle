@@ -6,7 +6,7 @@ buildscript {
         jcenter()
     }
     dependencies {
-        classpath 'com.android.tools.build:gradle:4.1.2'
+        classpath 'com.android.tools.build:gradle:4.1.1'
         classpath "org.jetbrains.kotlin:kotlin-gradle-plugin:$kotlin_version"
         //这个插件是在 transform jar 的时候直接把路由表通过 asm 工具直接写到 sdk 的类里面，就不用启动的时候扫描 dex 了，用于支持第三方App加固时自动注册
         classpath 'com.alibaba:arouter-register:1.0.2'
