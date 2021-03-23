@@ -1,2 +1,7 @@
 git 测试正式开始
+<<<<<<< HEAD
 git测试commit的版本回退2，在test push back2开发
+=======
+git测试commit的版本回退1
+git测试commit的版本回退2
+>>>>>>> f2a4aa2... test commit back2
