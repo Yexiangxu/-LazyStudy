@@ -1,28 +1,27 @@
 package luyao.wanandroid
 
-import android.util.Log
 import kotlinx.coroutines.*
-import okhttp3.internal.wait
 import org.junit.Test
 import java.lang.Thread.sleep
-import kotlin.coroutines.CoroutineContext
 import kotlin.system.measureTimeMillis
 
 class Classtest {
 
 
     @Test
-    fun testscope() = runBlocking{
+    fun testscope() = runBlocking {
 //        val periodStrategy = PeriodStrategy()
 //        periodStrategy.start()
 
-        val scope = CoroutineScope(Job() + Dispatchers.Main)
-        println("I'm working in thread 1${Thread.currentThread().name}")
-        val job = scope.launch {
-            println("I'm working in thread 1${Thread.currentThread().name}")
-            // 新的协程会将 CoroutineScope 作为父级
+//        val scope = CoroutineScope(Job() + Dispatchers.Main)
+//        println("I'm working in thread 1${Thread.currentThread().name}")
+//        val job = scope.launch {
+//            println("I'm working in thread 1${Thread.currentThread().name}")
+//            // 新的协程会将 CoroutineScope 作为父级
+//
+//        }
 
-        }
+
     }
 
     @Test
@@ -70,7 +69,7 @@ class Classtest {
         }
 
         coroutineScope { // 创建一个协程作用域
-            launch (Dispatchers.Default){
+            launch(Dispatchers.Default) {
                 delay(5000L)
                 println("Task from nested launch ${System.currentTimeMillis() - time}")
             }
@@ -228,25 +227,25 @@ class Classtest {
     @Test
     fun testrun() = runBlocking {
 
-            val job = launch {
-                launch {
-                    println("嵌套的顶层协程开始工作")
-                    delay(1000)
-                    println("嵌套的顶层协程结束工作")
-                }
-                launch {
-                    println("嵌套的子协程开始工作")
-                    delay(1000)
-                    println("嵌套的子协程结束工作")
-                }
+        val job = launch {
+            launch {
+                println("嵌套的顶层协程开始工作")
+                delay(1000)
+                println("嵌套的顶层协程结束工作")
             }
-            delay(500)
-            job.cancel()
-            delay(2000)
-
-            println("Main函数执行完毕")
-
+            launch {
+                println("嵌套的子协程开始工作")
+                delay(1000)
+                println("嵌套的子协程结束工作")
+            }
         }
+        delay(500)
+        job.cancel()
+        delay(2000)
+
+        println("Main函数执行完毕")
+
+    }
 }
 
 

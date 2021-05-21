@@ -2,6 +2,21 @@ apply plugin: 'com.android.application'
 apply plugin: 'kotlin-android'//用于编译Android代码
 apply plugin: 'kotlin-kapt'
 //apply plugin: 'android-aspectjx'
+class HenCoderPlugin implements Plugin<Project> {
+
+    @Override
+    void apply(Project target) {
+        def extension=target.extensions.create('hencoder',HenCoderExtension)
+        println "Hello ${extension.name}"
+    }
+}
+class  HenCoderExtension{
+    def name='lazyxu'
+}
+
+apply plugin: HenCoderPlugin
+
+
 android {
     compileSdkVersion rootProject.ext.android.compileSdkVersion
     buildToolsVersion rootProject.ext.android.buildToolsVersion
@@ -15,7 +30,7 @@ android {
         multiDexEnabled true
         vectorDrawables.useSupportLibrary = true
         ndk {//选择要添加的对应cpu类型的.so库，armeabi-v7a、arm64-v8a这两个占据99%
-            abiFilters 'armeabi', 'armeabi-v7a', 'arm64-v8a','x86'
+            abiFilters 'armeabi', 'armeabi-v7a', 'arm64-v8a', 'x86'
         }
     }
     kapt {
@@ -23,7 +38,7 @@ android {
             arg("AROUTER_MODULE_NAME", project.getName())
         }
     }
-    buildFeatures{
+    buildFeatures {
         dataBinding = true // for data binding
     }
     compileOptions {
@@ -35,7 +50,29 @@ android {
         jvmTarget = JavaVersion.VERSION_1_8.toString()
     }
 
-    buildTypes {
+    //签名
+    signingConfigs {
+        Properties props = new Properties()
+        def propFile = rootProject.file('keystore.properties')
+        if (propFile.canRead()) {
+            props.load(new FileInputStream(propFile))
+        }
+        release {//发布版本的签名配置
+            storeFile file(props['KEYSTORE_FILE'])
+            keyAlias props['KEY_ALIAS']
+            storePassword props['KEYSTORE_PWD']
+            keyPassword props['KEY_PWD']
+        }
+        debug {//调试版本的签名配置
+            storeFile file(props['DEBUG_KEYSTORE_FILE'])
+            keyAlias props['DEBUG_KEY_ALIAS']
+            storePassword props['DEBUG_KEYSTORE_PWD']
+            keyPassword props['DEBUG_KEY_PWD']
+        }
+    }
+
+    buildTypes {//buildTypes针对开发测试
+
         debug {
             minifyEnabled false //代码混淆
             shrinkResources false  //移除无用的resource文件
@@ -49,7 +86,15 @@ android {
             proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
         }
     }
-
+    flavorDimensions 'paying'
+    productFlavors {//免费版、付费版 productFlavors针对用户
+        free {
+            dimension "paying"
+        }
+        paid {
+            dimension "paying"
+        }
+    }
 }
 
 dependencies {
@@ -62,7 +107,7 @@ dependencies {
 
 
     if (rootProject.ext.isModule) {
-        implementation project(':basez_common')
+        implementation project(':base_common')
 
     } else {
         implementation project(':film')
@@ -77,4 +122,8 @@ dependencies {
     //提供一个Android主线程（类似于在使用RxJava时使用rxandroid）
     implementation "org.jetbrains.kotlinx:kotlinx-coroutines-android:1.3.9"
 
+
+
+
+//    compileOnly 'com.android.tools.build:gradle:3.0.1'
 }

@@ -1,3 +1,5 @@
+//include ':bulidSrc' 插件必须命名为bulidSrc，不能放在setting.gradle中
+include ':network'
 include ':lib_res'
 include ':film'
 include ':user'

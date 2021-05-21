@@ -20,13 +20,16 @@ allprojects {
         jcenter()
     }
 }
-
+println rootProject.buildDir //通过执行
 task clean(type: Delete) {
-    delete rootProject.buildDir
+    delete rootProject.buildDir //  即删除项目LazyStudy\build
+    doLast {
+
+    }
 }
 
 ext {
-    isModule = false //设置false即不是将model作为单独应用
+    isModule = true //设置false即不是将model作为单独应用
     android = [
             minSdkVersion    : 21,
             targetSdkVersion : 30,
