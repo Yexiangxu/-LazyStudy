@@ -1,43 +1,28 @@
 apply plugin: 'com.alibaba.arouter'
 apply from: './checkVersions.gradle'
-buildscript {
-    ext.kotlin_version = '1.4.31'
+buildscript {//buildscript里是gradle脚本执行所需依赖，分别是对应的maven库和插件
     repositories {
         google()
         jcenter()
+        mavenCentral()//因JCenter仓库自2021.5.1关闭，谷歌推荐使用Maven Central仓库，并创建项目默认将jcenter()变成mavenCentral()
     }
     dependencies {
-        classpath 'com.android.tools.build:gradle:4.1.1'
-        classpath "org.jetbrains.kotlin:kotlin-gradle-plugin:$kotlin_version"
+        classpath PluginsDeps.gradle_plugin
+        classpath KotlinDeps.kotlin_plugin
         //这个插件是在 transform jar 的时候直接把路由表通过 asm 工具直接写到 sdk 的类里面，就不用启动的时候扫描 dex 了，用于支持第三方App加固时自动注册
         classpath 'com.alibaba:arouter-register:1.0.2'
         classpath "com.github.ben-manes:gradle-versions-plugin:0.36.0"
-//        classpath 'com.hujiang.aspectjx:gradle-android-plugin-aspectjx:2.0.10'
     }
 }
 
-allprojects {
+allprojects { //allprojects里是项目本身需要的依赖
     repositories {
         google()
         jcenter()
+        mavenCentral()
     }
 }
-println rootProject.buildDir //通过执行
 task clean(type: Delete) {
-    delete rootProject.buildDir //  即删除项目LazyStudy\build
-    doLast {
-
-    }
+    delete rootProject.buildDir
 }
-
-
-
-//subprojects{//subprojects是对所有Child Project的配置
-//    afterEvaluate {
-//        android{
-//            //resourcePrefix约束资源前缀，只能限定Xml资源（不同model命名相同造成资源冲突）
-//            resourcePrefix "${project.name}_"
-//        }
-//    }
-//}
 

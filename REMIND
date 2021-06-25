@@ -2,6 +2,7 @@
 使用buildSrc优点
 1. 支持自动补全
 
+缺点：无法查看依赖库是否有更新，因此引入[ben-manes的gradle-versions-plugin](https://github.com/ben-manes/gradle-versions-plugin)
 
 
 
