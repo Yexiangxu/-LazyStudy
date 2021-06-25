@@ -3,7 +3,7 @@ apply from: './checkVersions.gradle'
 buildscript {//buildscript里是gradle脚本执行所需依赖，分别是对应的maven库和插件
     repositories {
         google()
-        jcenter()
+        gradlePluginPortal()//gradle-versions-plugin需要
         mavenCentral()//因JCenter仓库自2021.5.1关闭，谷歌推荐使用Maven Central仓库，并创建项目默认将jcenter()变成mavenCentral()
     }
     dependencies {
@@ -18,10 +18,11 @@ buildscript {//buildscript里是gradle脚本执行所需依赖，分别是对应
 allprojects { //allprojects里是项目本身需要的依赖
     repositories {
         google()
-        jcenter()
+        gradlePluginPortal()
         mavenCentral()
     }
 }
+
 task clean(type: Delete) {
     delete rootProject.buildDir
 }
