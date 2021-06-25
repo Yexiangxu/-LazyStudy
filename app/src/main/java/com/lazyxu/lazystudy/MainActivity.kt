@@ -1,14 +1,14 @@
 package com.lazyxu.lazystudy
 
-import android.content.Intent
 import android.os.Bundle
-import android.os.Handler
-import android.os.Looper
 import androidx.appcompat.app.AppCompatActivity
+import androidx.databinding.DataBindingUtil
 import com.alibaba.android.arouter.launcher.ARouter
-import com.lazyxu.lazystudy.test.ConstrainActivity
+import com.lazyxu.base.router.RouterUrl
+import com.lazyxu.lazystudy.databinding.ActivityMainBinding
 
 class MainActivity : AppCompatActivity() {
+    private lateinit var databinding: ActivityMainBinding
 
     //    private var wallpaperFragment: HomeFragment? = null
 //    private var musicFragment: MineFragment? = null
@@ -19,10 +19,9 @@ class MainActivity : AppCompatActivity() {
 //    private var lastIndex = 0
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_main)
-        Handler(Looper.getMainLooper()).postDelayed({
-            startActivity(Intent(this, ConstrainActivity::class.java))
-        }, 2000L)
+        databinding = DataBindingUtil.setContentView(this, R.layout.activity_main)
+
+        ARouter.getInstance().build(RouterUrl.Film.FILM).navigation()
 //        initView()
     }
 }

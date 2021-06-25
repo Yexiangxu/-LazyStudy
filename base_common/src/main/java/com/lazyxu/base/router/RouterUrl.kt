@@ -22,11 +22,10 @@ object RouterUrl {
             const val FORGETPWD = "/lazytest/register"
         }
     }
-    class Main {
+    class Film {
         companion object {
-            const val MAINGROUP = "/main/"
-            const val FILM = MAINGROUP + "film"
+            const val FILMGROUP = "/main/"
+            const val FILM = FILMGROUP + "film"
         }
     }
-
 }

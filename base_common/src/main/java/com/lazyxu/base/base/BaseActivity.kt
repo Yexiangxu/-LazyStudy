@@ -3,6 +3,7 @@ package com.lazyxu.base.base
 import android.content.Intent
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
+import androidx.lifecycle.ViewModelProvider
 import com.alibaba.android.arouter.launcher.ARouter
 import com.lazyxu.base.base.head.HeadToolbar
 import com.lazyxu.base.utils.ActivityStack
@@ -12,6 +13,9 @@ abstract class BaseActivity : AppCompatActivity() {
     private var mToolbarTitle: Any? = null
     private var mBackDrawable: Int = -1
     private var mToolbarTitleColor: Int = -1
+
+
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         if (!isTaskRoot) { //防止首次安装按home键重新启动
@@ -25,6 +29,8 @@ abstract class BaseActivity : AppCompatActivity() {
         ActivityStack.INSTANCE.addActivity(this)
         ARouter.getInstance().inject(this)
         initHead()
+        initView()
+//        initClicks()
     }
 
     private fun initHead() {
@@ -37,4 +43,6 @@ abstract class BaseActivity : AppCompatActivity() {
     }
 
     abstract fun headToolbar(): HeadToolbar
+    abstract fun initView()
+//    open fun initClicks(){}
 }

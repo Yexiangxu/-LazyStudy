@@ -1,31 +1,33 @@
-apply plugin: 'com.android.application'
-apply plugin: 'kotlin-android'//用于编译Android代码
-apply plugin: 'kotlin-kapt'
-//apply plugin: 'android-aspectjx'
-class HenCoderPlugin implements Plugin<Project> {
-
-    @Override
-    void apply(Project target) {
-        def extension=target.extensions.create('hencoder',HenCoderExtension)
-        println "Hello ${extension.name}"
-    }
+plugins{
+    id 'com.android.application'
+    id 'kotlin-android'//用于编译Android代码
+    id 'kotlin-kapt'
 }
-class  HenCoderExtension{
-    def name='lazyxu'
-}
+//
+//class HenCoderPlugin implements Plugin<Project> {
+//
+//    @Override
+//    void apply(Project target) {
+//        def extension=target.extensions.create('hencoder',HenCoderExtension)
+//        println "Hello ${extension.name}"
+//    }
+//}
+//class  HenCoderExtension{
+//    def name='lazyxu'
+//}
 
-apply plugin: HenCoderPlugin
-
+//apply plugin: HenCoderPlugin
 
 android {
-    compileSdkVersion rootProject.ext.android.compileSdkVersion
-    buildToolsVersion rootProject.ext.android.buildToolsVersion
+
+    compileSdkVersion BuildConfig.compileSdkVersion
+    buildToolsVersion BuildConfig.buildToolsVersion
     defaultConfig {
-        applicationId rootProject.ext.android.applicationId
-        minSdkVersion rootProject.ext.android.minSdkVersion
-        targetSdkVersion rootProject.ext.android.compileSdkVersion
-        versionCode rootProject.ext.android.versionCode
-        versionName rootProject.ext.android.versionName
+        applicationId "com.lazyxu.lazystudy"
+        minSdkVersion BuildConfig.minSdkVersion
+        targetSdkVersion BuildConfig.targetSdkVersion
+        versionCode BuildConfig.versionCode
+        versionName BuildConfig.versionName
         resConfigs "zh"
         multiDexEnabled true
         vectorDrawables.useSupportLibrary = true
@@ -106,13 +108,8 @@ dependencies {
     implementation "android.arch.navigation:navigation-fragment-ktx:1.0.0"
 
 
-    if (rootProject.ext.isModule) {
-        implementation project(':base_common')
-
-    } else {
-        implementation project(':film')
-        implementation project(':user')
-    }
+    implementation project(':film')
+    implementation project(':user')
     implementation 'com.flyco.tablayout:FlycoTabLayout_Lib:2.1.2@aar'
     implementation 'com.github.CymChad:BaseRecyclerViewAdapterHelper:3.0.4'
 //    implementation 'com.github.hackware1993:MagicIndicator:1.7.0'
@@ -122,8 +119,7 @@ dependencies {
     //提供一个Android主线程（类似于在使用RxJava时使用rxandroid）
     implementation "org.jetbrains.kotlinx:kotlinx-coroutines-android:1.3.9"
 
-
-
+// implementation Versions.
 
 //    compileOnly 'com.android.tools.build:gradle:3.0.1'
 }

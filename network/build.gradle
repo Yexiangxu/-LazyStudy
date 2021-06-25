@@ -1,19 +1,13 @@
-if (rootProject.ext.isModule) {
-    apply plugin: 'com.android.application'
-} else {
-    apply plugin: 'com.android.library'
-}
+
+apply plugin: 'com.android.library'
 apply plugin: 'kotlin-android'
 apply plugin: 'kotlin-kapt'
 android {
-    buildToolsVersion rootProject.ext.android.buildToolsVersion
-    compileSdkVersion rootProject.ext.android.compileSdkVersion
+    compileSdkVersion BuildConfig.compileSdkVersion
+    buildToolsVersion BuildConfig.buildToolsVersion
     defaultConfig {
-        if (rootProject.ext.isModule) {
-            applicationId "com.lazyxu.network"
-        }
-        minSdkVersion rootProject.ext.android.minSdkVersion
-        targetSdkVersion rootProject.ext.android.targetSdkVersion
+        minSdkVersion BuildConfig.minSdkVersion
+        targetSdkVersion BuildConfig.targetSdkVersion
         versionCode 1
         versionName "1.0"
         multiDexEnabled true
@@ -44,19 +38,19 @@ android {
             consumerProguardFiles 'proguard-rules.pro'// 配置此参数，方可将混淆文件打包进aar
         }
     }
-    sourceSets {
-        main {
-            if (rootProject.ext.isModule) {
-                manifest.srcFile 'src/main/module/AndroidManifest.xml'
-            } else {
-                manifest.srcFile 'src/main/AndroidManifest.xml'
-                //集成开发模式下排除debug文件夹中的所有Java文件
-                java {
-                    exclude 'debug/**'
-                }
-            }
-        }
-    }
+//    sourceSets {
+//        main {
+//            if (rootProject.ext.isModule) {
+//                manifest.srcFile 'src/main/module/AndroidManifest.xml'
+//            } else {
+//                manifest.srcFile 'src/main/AndroidManifest.xml'
+//                //集成开发模式下排除debug文件夹中的所有Java文件
+//                java {
+//                    exclude 'debug/**'
+//                }
+//            }
+//        }
+//    }
 
 
 }

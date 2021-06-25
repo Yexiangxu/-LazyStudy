@@ -1,17 +1,14 @@
-if (rootProject.ext.isModule) {
-    apply plugin: 'com.android.application'
-} else {
-    apply plugin: 'com.android.library'
-}
+
+apply plugin: 'com.android.library'
 apply plugin: 'kotlin-android'
 apply plugin: 'kotlin-kapt'
 //apply plugin: 'android-aspectjx'
 android {
-    buildToolsVersion rootProject.ext.android.buildToolsVersion
-    compileSdkVersion rootProject.ext.android.compileSdkVersion
+    compileSdkVersion BuildConfig.compileSdkVersion
+    buildToolsVersion BuildConfig.buildToolsVersion
     defaultConfig {
-        minSdkVersion rootProject.ext.android.minSdkVersion
-        targetSdkVersion rootProject.ext.android.targetSdkVersion
+        minSdkVersion BuildConfig.minSdkVersion
+        targetSdkVersion BuildConfig.targetSdkVersion
         versionCode 1
         versionName "1.0"
         resConfigs "zh"
@@ -62,7 +59,8 @@ android {
 
 dependencies {
     implementation fileTree(dir: 'libs', include: ['*.jar', '*.aar'])
-    kapt "com.alibaba:arouter-compiler:$rootProject.ext.dependencies.arouter_compiler"
+    kapt "com.alibaba:arouter-compiler:1.5.1"
     api project(':base_common')
+
 
 }

@@ -1,14 +1,17 @@
-apply plugin: 'com.android.library'
-apply plugin: 'kotlin-android'
-apply plugin: 'kotlin-kapt'
-//apply plugin: 'android-aspectjx'
+
+plugins{
+    id 'com.android.library'
+    id 'kotlin-android'
+    id 'kotlin-kapt'
+}
+
 
 android {
-    compileSdkVersion rootProject.ext.android.compileSdkVersion
-    buildToolsVersion rootProject.ext.android.buildToolsVersion
+    compileSdkVersion BuildConfig.compileSdkVersion
+    buildToolsVersion BuildConfig.buildToolsVersion
     defaultConfig {
-        minSdkVersion rootProject.ext.android.minSdkVersion
-        targetSdkVersion rootProject.ext.android.compileSdkVersion
+        minSdkVersion BuildConfig.minSdkVersion
+        targetSdkVersion BuildConfig.targetSdkVersion
         versionCode 1
         versionName "1.0"
         resConfigs "zh"
@@ -71,6 +74,7 @@ dependencies {
 
 
     api 'androidx.lifecycle:lifecycle-extensions:2.2.0'
+    api 'androidx.lifecycle:lifecycle-viewmodel-ktx:2.2.0'
 
     //======================性能优化==========================
     debugApi 'com.squareup.leakcanary:leakcanary-android:1.6.3'
@@ -80,8 +84,8 @@ dependencies {
     api 'com.gyf.immersionbar:immersionbar:3.0.0'
     api 'uk.co.chrisjenx:calligraphy:2.3.0'
     api 'com.gyf.immersionbar:immersionbar-ktx:3.0.0'
-    api "com.alibaba:arouter-api:$rootProject.ext.dependencies.arouter"
-    kapt "com.alibaba:arouter-compiler:$rootProject.ext.dependencies.arouter_compiler"
+    api "com.alibaba:arouter-api:1.5.1"
+    kapt "com.alibaba:arouter-compiler:1.5.1"
     //所有使用了arouter的model需要添加，否则跳转报错
     // ==============      ===================
     api 'com.github.bumptech.glide:glide:4.11.0'
@@ -91,4 +95,6 @@ dependencies {
     //===============  jetpack    ===================
     //================= rx =======================
     api 'com.squareup.okhttp3:logging-interceptor:4.7.2'
+
+    api 'androidx.lifecycle:lifecycle-runtime-ktx:2.2.0'
 }
