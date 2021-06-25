@@ -18,11 +18,34 @@ plugins {
 }
 repositories {
     google()
-    maven("https://maven.aliyun.com/repository/public")
+    mavenCentral()
 }
 ```
 2. **使用[ben-manes的gradle-versions-plugin](https://github.com/ben-manes/gradle-versions-plugin)查看依赖库更新情况**
    - window在studio的terminal窗口输入`gradlew dependencyUpdates`命令，会生成`build\dependencyUpdates\report.txt`文件，里面即可查看依赖库更新情况
+
+
+-------------------------
+
+#### 二.
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
