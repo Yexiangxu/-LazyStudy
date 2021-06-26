@@ -10,7 +10,7 @@ object BuildConfig {
 
 object Versions{
     const val kotlin_version = "1.5.10"
-    const val gradle_plugin_version = "4.2.1"
+    const val gradle_plugin_version = "4.1.1"
 }
 
 object PluginsDeps {
