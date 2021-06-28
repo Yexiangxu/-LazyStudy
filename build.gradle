@@ -7,8 +7,8 @@ buildscript {//buildscript里是gradle脚本执行所需依赖，分别是对应
         mavenCentral()//因JCenter仓库自2021.5.1关闭，谷歌推荐使用Maven Central仓库，并创建项目默认将jcenter()变成mavenCentral()
     }
     dependencies {
-        classpath PluginsDeps.gradle_plugin
-        classpath KotlinDeps.kotlin_plugin
+        classpath PluginsDeps.gradlePlugin
+        classpath KotlinDeps.kotlinPlugin
         //这个插件是在 transform jar 的时候直接把路由表通过 asm 工具直接写到 sdk 的类里面，就不用启动的时候扫描 dex 了，用于支持第三方App加固时自动注册
         classpath 'com.alibaba:arouter-register:1.0.2'
         classpath "com.github.ben-manes:gradle-versions-plugin:0.36.0"

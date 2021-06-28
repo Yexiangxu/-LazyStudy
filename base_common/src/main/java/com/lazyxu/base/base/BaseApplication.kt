@@ -3,6 +3,7 @@ package com.lazyxu.base.base
 import android.app.Application
 import android.content.Context
 import android.os.Build
+import android.os.Handler
 import android.os.Process
 import android.provider.Settings
 import android.text.TextUtils
@@ -44,6 +45,7 @@ abstract class BaseApplication : Application() {
 
     private fun initSdk() {
         if (BuildConfig.DEBUG) {
+            com.facebook.stetho.Stetho.initializeWithDefaults(this)
             Logger.addLogAdapter(AndroidLogAdapter())
             MyCrashHandler.getInstance().init(this)
             refWatcher = LeakCanary.install(this)
