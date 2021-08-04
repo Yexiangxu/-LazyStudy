@@ -45,6 +45,7 @@ nowrap ：默认值，不换行
 wrap：按正常方向换行
 wrap_reverse：按反方向换行
 
+测试版本回退
 
 
 
