@@ -59,7 +59,7 @@ dependencies {
     //======================debug调试============================
     api DebugDeps.bugly
     api DebugDeps.logger
-    debugImplementation DebugDeps.stetho
+    implementation DebugDeps.stetho
     //======================数据库存储============================
     api DataStoreDeps.datastorePreferences
     //kotlin
@@ -67,7 +67,7 @@ dependencies {
     api 'androidx.core:core-ktx:1.3.2'//为Jetpack提供简洁的惯用Kotlin代码
     //==========base_common(用api只需引用一次,在别的module不用再添加)======================
     api 'androidx.appcompat:appcompat:1.2.0'
-    api 'androidx.recyclerview:recyclerview:1.1.0'
+    api 'androidx.recyclerview:recyclerview:1.2.1'
     api 'androidx.constraintlayout:constraintlayout:2.1.0-alpha2'
     implementation 'androidx.multidex:multidex:2.0.1'
 
@@ -79,6 +79,7 @@ dependencies {
 
     api 'androidx.lifecycle:lifecycle-extensions:2.2.0'
     api 'androidx.lifecycle:lifecycle-viewmodel-ktx:2.2.0'
+    api 'androidx.lifecycle:lifecycle-runtime-ktx:2.2.0'
 
     //======================性能优化==========================
     debugApi 'com.squareup.leakcanary:leakcanary-android:1.6.3'
@@ -100,5 +101,4 @@ dependencies {
     //================= rx =======================
     api 'com.squareup.okhttp3:logging-interceptor:4.7.2'
 
-    api 'androidx.lifecycle:lifecycle-runtime-ktx:2.2.0'
 }

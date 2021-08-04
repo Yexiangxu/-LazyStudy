@@ -1,33 +1,35 @@
 package com.lazyxu.base.utils
 
+import androidx.datastore.core.DataStore
 import androidx.datastore.preferences.core.*
-import com.eyepetizer.android.extension.dataStore
-import com.eyepetizer.android.util.DataStoreUtils.clear
-import com.eyepetizer.android.util.DataStoreUtils.clearSync
-import com.eyepetizer.android.util.DataStoreUtils.getData
-import com.eyepetizer.android.util.DataStoreUtils.getSyncData
-import com.eyepetizer.android.util.DataStoreUtils.putData
-import com.eyepetizer.android.util.DataStoreUtils.putSyncData
-import com.eyepetizer.android.util.DataStoreUtils.readBooleanData
-import com.eyepetizer.android.util.DataStoreUtils.readBooleanFlow
-import com.eyepetizer.android.util.DataStoreUtils.readFloatData
-import com.eyepetizer.android.util.DataStoreUtils.readFloatFlow
-import com.eyepetizer.android.util.DataStoreUtils.readIntData
-import com.eyepetizer.android.util.DataStoreUtils.readIntFlow
-import com.eyepetizer.android.util.DataStoreUtils.readLongData
-import com.eyepetizer.android.util.DataStoreUtils.readLongFlow
-import com.eyepetizer.android.util.DataStoreUtils.readStringData
-import com.eyepetizer.android.util.DataStoreUtils.readStringFlow
-import com.eyepetizer.android.util.DataStoreUtils.saveBooleanData
-import com.eyepetizer.android.util.DataStoreUtils.saveFloatData
-import com.eyepetizer.android.util.DataStoreUtils.saveIntData
-import com.eyepetizer.android.util.DataStoreUtils.saveLongData
-import com.eyepetizer.android.util.DataStoreUtils.saveStringData
-import com.eyepetizer.android.util.DataStoreUtils.saveSyncBooleanData
-import com.eyepetizer.android.util.DataStoreUtils.saveSyncFloatData
-import com.eyepetizer.android.util.DataStoreUtils.saveSyncIntData
-import com.eyepetizer.android.util.DataStoreUtils.saveSyncLongData
-import com.eyepetizer.android.util.DataStoreUtils.saveSyncStringData
+import com.lazyxu.base.base.BaseApplication
+import com.lazyxu.base.ext.dataStore
+import com.lazyxu.base.utils.DataStoreUtils.clear
+import com.lazyxu.base.utils.DataStoreUtils.clearSync
+import com.lazyxu.base.utils.DataStoreUtils.getData
+import com.lazyxu.base.utils.DataStoreUtils.getSyncData
+import com.lazyxu.base.utils.DataStoreUtils.putData
+import com.lazyxu.base.utils.DataStoreUtils.putSyncData
+import com.lazyxu.base.utils.DataStoreUtils.readBooleanData
+import com.lazyxu.base.utils.DataStoreUtils.readBooleanFlow
+import com.lazyxu.base.utils.DataStoreUtils.readFloatData
+import com.lazyxu.base.utils.DataStoreUtils.readFloatFlow
+import com.lazyxu.base.utils.DataStoreUtils.readIntData
+import com.lazyxu.base.utils.DataStoreUtils.readIntFlow
+import com.lazyxu.base.utils.DataStoreUtils.readLongData
+import com.lazyxu.base.utils.DataStoreUtils.readLongFlow
+import com.lazyxu.base.utils.DataStoreUtils.readStringData
+import com.lazyxu.base.utils.DataStoreUtils.readStringFlow
+import com.lazyxu.base.utils.DataStoreUtils.saveBooleanData
+import com.lazyxu.base.utils.DataStoreUtils.saveFloatData
+import com.lazyxu.base.utils.DataStoreUtils.saveIntData
+import com.lazyxu.base.utils.DataStoreUtils.saveLongData
+import com.lazyxu.base.utils.DataStoreUtils.saveStringData
+import com.lazyxu.base.utils.DataStoreUtils.saveSyncBooleanData
+import com.lazyxu.base.utils.DataStoreUtils.saveSyncFloatData
+import com.lazyxu.base.utils.DataStoreUtils.saveSyncIntData
+import com.lazyxu.base.utils.DataStoreUtils.saveSyncLongData
+import com.lazyxu.base.utils.DataStoreUtils.saveSyncStringData
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.catch
 import kotlinx.coroutines.flow.first
@@ -60,6 +62,8 @@ import java.io.IOException
  *
  */
 object DataStoreUtils {
+
+    private val dataStore: DataStore<Preferences> = BaseApplication.INSTANCE.dataStore
 
     @Suppress("UNCHECKED_CAST")
     fun <U> getSyncData(key: String, default: U): U {
@@ -232,7 +236,8 @@ object DataStoreUtils {
         }
     }
 
-    fun saveSyncBooleanData(key: String, value: Boolean) = runBlocking { saveBooleanData(key, value) }
+    fun saveSyncBooleanData(key: String, value: Boolean) =
+        runBlocking { saveBooleanData(key, value) }
 
     suspend fun saveIntData(key: String, value: Int) {
         dataStore.edit { mutablePreferences ->

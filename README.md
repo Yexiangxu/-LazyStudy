@@ -26,10 +26,24 @@ repositories {
 
 
 -------------------------
+### 调试
+#### 1. [logger](https://github.com/orhanobut/logger)打印日志
+#### 2使用[stetho](https://github.com/orhanobut/logger)查看数据存储网络等
 
-#### 二. [logger](https://github.com/orhanobut/logger)打印日志
+-------------------------
 
 
+
+
+
+待使用
+MotionLayout
+Hilt
+
+flexWrap 换行方式
+nowrap ：默认值，不换行
+wrap：按正常方向换行
+wrap_reverse：按反方向换行
 
 
 

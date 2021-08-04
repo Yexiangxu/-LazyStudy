@@ -2,18 +2,19 @@ package luyao.wanandroid
 
 import org.junit.Test
 
-
+private const val LINE_TAGSIZE = 3//一行显示多少
 @Test
 fun main() {
-    val repeatFun: String.(Int) -> String = { times -> this.repeat(times) }
-    val twoParameters: (String, Int) -> String = repeatFun // OK
-
-    fun runTransformation(f: (String, Int) -> String): String {
-        return f("hello", 3)
+    val numbers = listOf("one", "two", "three", "four", "five")
+    val beginPosition = 3/ LINE_TAGSIZE * LINE_TAGSIZE
+    val endPosition = if (numbers.size>=beginPosition+ LINE_TAGSIZE){
+        beginPosition+ LINE_TAGSIZE-1
+    }else{
+        numbers.size-1
     }
-    val result = runTransformation(repeatFun) // OK
-
-    println("result = $result")
+    println(beginPosition)
+    println(endPosition)
+    println(numbers.slice(beginPosition..endPosition))
 }
 
 fun main1() {

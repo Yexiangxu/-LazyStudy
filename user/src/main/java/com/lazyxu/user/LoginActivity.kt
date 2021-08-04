@@ -6,6 +6,7 @@ import androidx.databinding.DataBindingUtil
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import com.alibaba.android.arouter.facade.annotation.Route
+import com.bumptech.glide.Glide
 import com.lazyxu.base.base.BaseActivity
 import com.lazyxu.base.base.head.HeadBuild
 import com.lazyxu.base.base.head.HeadToolbar
