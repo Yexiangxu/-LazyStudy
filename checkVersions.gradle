@@ -1,7 +1,7 @@
 apply plugin: "com.github.ben-manes.versions"
 
 def isNonStable = { ComponentSelection selection ->
-    boolean rejected = ['final', 'alpha', 'beta', 'ga'].any { qualifier ->
+    boolean rejected = ['final', 'alpha', 'beta', 'ga','M1','RC'].any { qualifier ->
         selection.candidate.version ==~ /(?i).*[.-]${qualifier}[.\d-]*/
     }
     return rejected

@@ -57,7 +57,7 @@ android {
 
 dependencies {
     implementation fileTree(dir: 'libs', include: ['*.jar', '*.aar'])
-    kapt "com.alibaba:arouter-compiler:1.5.1"
+    kapt ArouterDeps.arouterCompiler
     api project(':base_common')
 
 
