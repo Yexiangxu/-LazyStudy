@@ -19,7 +19,6 @@ android {
 //        ndk {//选择要添加的对应cpu类型的.so库，armeabi-v7a、arm64-v8a这两个占据99%
 //            abiFilters 'armeabi', 'armeabi-v7a', 'arm64-v8a','x86'
 //        }
-        buildConfigField("String", "BUGLY_DEBUG_APPID", quote(BUGLY_DEBUG_APPID))
         buildConfigField("String", "CHANNEL_QID", quote(CHANNEL_QID))
     }
     buildFeatures {
@@ -42,9 +41,16 @@ android {
     }
 
     buildTypes {
-        release {
+        debug {
             minifyEnabled false
             proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
+            buildConfigField("String", "BUGLY_APPID", BUGLY_DEBUG_APPID)
+        }
+        release {
+            minifyEnabled true
+            proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
+            buildConfigField("String", "BUGLY_APPID", BUGLY_RELEASE_APPID)
+
         }
     }
 }
@@ -54,7 +60,13 @@ static def quote(s) {
 }
 
 dependencies {
-    implementation fileTree(dir: 'libs', include: ['*.jar', '*.aar'])
+    api fileTree(dir: 'libs', include: ['*.jar', '*.aar'])
+    api CommonDeps.brvah
+    api CommonDeps.multidex
+    api ArouterDeps.arouterApi
+    kapt ArouterDeps.arouterCompiler//将编译类路径与注释处理器类路径分开，从而提高构建性能
+    api GlideDeps.glide
+    kapt GlideDeps.glideCompiler
 
     //======================debug调试============================
     api DebugDeps.bugly
@@ -69,7 +81,6 @@ dependencies {
     api 'androidx.appcompat:appcompat:1.2.0'
     api 'androidx.recyclerview:recyclerview:1.2.1'
     api 'androidx.constraintlayout:constraintlayout:2.1.0-alpha2'
-    implementation 'androidx.multidex:multidex:2.0.1'
 
 
 //    api 'com.google.android.material:material:1.2.1'
@@ -89,12 +100,9 @@ dependencies {
     api 'com.gyf.immersionbar:immersionbar:3.0.0'
     api 'uk.co.chrisjenx:calligraphy:2.3.0'
     api 'com.gyf.immersionbar:immersionbar-ktx:3.0.0'
-    api "com.alibaba:arouter-api:1.5.1"
-    kapt "com.alibaba:arouter-compiler:1.5.1"
-    //所有使用了arouter的model需要添加，否则跳转报错
+
     // ==============      ===================
-    api 'com.github.bumptech.glide:glide:4.11.0'
-    kapt 'com.github.bumptech.glide:compiler:4.11.0'
+
     api 'com.squareup.okhttp3:okhttp:4.8.0'
     api 'com.squareup.retrofit2:retrofit:2.9.0'
     //===============  jetpack    ===================

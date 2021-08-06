@@ -1,26 +1,17 @@
 apply plugin: 'com.alibaba.arouter'
 apply from: './checkVersions.gradle'
 buildscript {//buildscript里是gradle脚本执行所需依赖，分别是对应的maven库和插件
-    repositories {
-        google()
-        gradlePluginPortal()//gradle-versions-plugin需要
-        mavenCentral()//因JCenter仓库自2021.5.1关闭，谷歌推荐使用Maven Central仓库，并创建项目默认将jcenter()变成mavenCentral()
-    }
+    PluginsDeps.addRepos.invoke(repositories)
     dependencies {
         classpath PluginsDeps.gradlePlugin
         classpath KotlinDeps.kotlinPlugin
-        //这个插件是在 transform jar 的时候直接把路由表通过 asm 工具直接写到 sdk 的类里面，就不用启动的时候扫描 dex 了，用于支持第三方App加固时自动注册
-        classpath 'com.alibaba:arouter-register:1.0.2'
-        classpath "com.github.ben-manes:gradle-versions-plugin:0.36.0"
+        classpath ArouterDeps.arouterRegisterPlugin
+        classpath PluginsDeps.benmanesGradleVersionPlugin
     }
 }
 
 allprojects { //allprojects里是项目本身需要的依赖
-    repositories {
-        google()
-        gradlePluginPortal()
-        mavenCentral()
-    }
+    PluginsDeps.addRepos.invoke(repositories)
 }
 
 task clean(type: Delete) {
