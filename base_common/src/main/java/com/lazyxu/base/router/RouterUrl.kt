@@ -10,22 +10,19 @@ package com.lazyxu.base.router
  * FIXME
  */
 object RouterUrl {
-    const val PATH = "path"
-
-
-
     class User {
         companion object {
-            const val USERGROUP = "/user/"
-            const val LOGIN = USERGROUP + "login"
-            const val REGISTER = USERGROUP + "register"
-            const val FORGETPWD = "/lazytest/register"
+            private const val userGroup = "/user"
+            const val LOGIN = "$userGroup/login"
+            const val REGISTER = "$userGroup/register"
+            const val FORGETPWD = "$userGroup/register"
         }
     }
+
     class Film {
         companion object {
-            const val FILMGROUP = "/main/"
-            const val FILM = FILMGROUP + "film"
+            private const val filmGroup = "/main"
+            const val FILM = "$filmGroup/film"
         }
     }
 }

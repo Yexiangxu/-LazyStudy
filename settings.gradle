@@ -2,7 +2,7 @@
 include ':network'
 include ':lib_res'
 include ':film'
-include ':user'
+include ':module_login'
 include ':base_common'
 include ':app'
 

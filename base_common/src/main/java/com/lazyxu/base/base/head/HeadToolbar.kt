@@ -1,7 +1,6 @@
 package com.lazyxu.base.base.head
 
 class HeadToolbar {
-    var layoutId = -1
     var toolbarTitle:Any ?= null
     var toolbarTitleSize = -1
     var toolbarTitleColor = -1

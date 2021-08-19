@@ -2,10 +2,6 @@ package com.lazyxu.base.base.head
 
 class HeadBuild : IHeadBuilder {
     var headToolbar = HeadToolbar()
-    override fun contentViewId(layoutId: Int): IHeadBuilder {
-        headToolbar.layoutId = layoutId
-        return this
-    }
     override fun toolbarTitle(toolbarTitle: Any): IHeadBuilder {
         headToolbar.toolbarTitle = toolbarTitle
         return this

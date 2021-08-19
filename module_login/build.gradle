@@ -22,7 +22,7 @@ android {
         }
     }
     buildFeatures{
-        dataBinding = true // for data binding
+        dataBinding = true
     }
     compileOptions {
         sourceCompatibility JavaVersion.VERSION_1_8
@@ -58,7 +58,7 @@ android {
 dependencies {
     implementation fileTree(dir: 'libs', include: ['*.jar', '*.aar'])
     kapt ArouterDeps.arouterCompiler
-    api project(':base_common')
+    implementation project(':base_common')
 
 
 }

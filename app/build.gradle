@@ -106,10 +106,10 @@ dependencies {
     implementation 'android.arch.navigation:navigation-ui:1.0.0'
     implementation "android.arch.navigation:navigation-ui-ktx:1.0.0"
     implementation "android.arch.navigation:navigation-fragment-ktx:1.0.0"
-
-
+    kapt ArouterDeps.arouterCompiler
+    implementation project(':base_common')
     implementation project(':film')
-    runtimeOnly project(':user')//runtimeOnly用于解耦，比如组件化壳子工程app依赖其他module时就可以用 runtimeOnly，这样在壳子工程app里面不会错误使用 子module代码，防止低级错误耦
+    runtimeOnly project(':module_login')//runtimeOnly用于解耦，比如组件化壳子工程app依赖其他module时就可以用 runtimeOnly，这样在壳子工程app里面不会错误使用 子module代码，防止低级错误耦
     implementation 'com.flyco.tablayout:FlycoTabLayout_Lib:2.1.2@aar'
 
 //    implementation 'com.github.hackware1993:MagicIndicator:1.7.0'

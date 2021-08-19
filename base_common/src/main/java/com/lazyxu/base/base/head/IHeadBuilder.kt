@@ -5,7 +5,6 @@ import androidx.annotation.LayoutRes
 import androidx.annotation.StringRes
 
 interface IHeadBuilder {
-    fun contentViewId(@LayoutRes layoutId: Int): IHeadBuilder
     fun toolbarTitle( toolbarTitle: Any): IHeadBuilder
     fun toolbarTitleSize(@StringRes textSize: Int): IHeadBuilder
     fun toolbarTitleColor(@ColorRes toolbarTitleColor: Int): IHeadBuilder

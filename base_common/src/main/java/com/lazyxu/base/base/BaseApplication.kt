@@ -3,7 +3,6 @@ package com.lazyxu.base.base
 import android.app.Application
 import android.content.Context
 import android.os.Build
-import android.os.Handler
 import android.os.Process
 import android.provider.Settings
 import android.text.TextUtils
@@ -65,7 +64,12 @@ abstract class BaseApplication : Application() {
             val strategy = CrashReport.UserStrategy(this)
             strategy.appVersion = DeviceUtil.VERSION //strategy.appReportDelay = 10_000
             strategy.appChannel = BuildConfig.CHANNEL_QID
-            CrashReport.initCrashReport(INSTANCE, BuildConfig.BUGLY_DEBUG_APPID, BuildConfig.DEBUG, strategy)
+            CrashReport.initCrashReport(
+                INSTANCE,
+                BuildConfig.BUGLY_APPID,
+                BuildConfig.DEBUG,
+                strategy
+            )
             //ARouter
             if (BuildConfig.DEBUG) {
                 ARouter.openLog()    // 打印日志

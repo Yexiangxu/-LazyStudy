@@ -1,15 +1,12 @@
 package com.lazyxu.base.utils
 
 import android.app.Activity
-import android.content.Context
 import android.os.Process
-import android.view.inputmethod.InputMethodManager
 import java.util.*
 import kotlin.system.exitProcess
 
 /**
  * User:Lazy_xu
- * Data:2019/10/10
  * FIXME
  */
 class ActivityStack private constructor() {
@@ -25,16 +22,67 @@ class ActivityStack private constructor() {
 
     fun removeActivity(activity: Activity) {
         with(activity) {
-            if (!mActivities.isEmpty() && mActivities.contains(this)) {
+            if (!mActivities.isNullOrEmpty() && mActivities.contains(this)) {
+                mActivities.remove(this)
+            }
+        }
+    }
+
+    /**
+     * 获取当前Activity (堆栈中最后一个添加的)
+     */
+    val currentActivity: Activity?
+        get() = mActivities.lastElement()
+
+    /**
+     * 获取指定类名的Activity
+     */
+    fun getActivity(cls: Class<*>): Activity? {
+        mActivities.forEach {
+            if (it.javaClass == cls) {
+                return it
+            }
+        }
+        return null
+    }
+
+
+    fun finishActivity(activity: Activity) {
+        with(activity) {
+            if (!mActivities.isNullOrEmpty() && mActivities.contains(this)) {
                 mActivities.remove(this)
                 this.finish()
             }
         }
     }
 
-    fun popAllActivity(isForceClose: Boolean) {
+    /**
+     * 结束指定类名的Activity
+     *
+     */
+    fun finishActivity(clazz: Class<*>) {
+        for (activity in mActivities) {
+            if (activity?.javaClass == clazz) {
+                finishActivity(activity)
+                return
+            }
+        }
+    }
+
+    /**
+     * 退出栈并finish当前activity
+     */
+    private fun finishCurrentActivity() {
+        if (this.mActivities.isNotEmpty()) {
+            //pop返回栈顶值并将其删除
+            (mActivities.pop() as Activity).finish()
+        }
+    }
+
+
+    fun exitApp(isForceClose: Boolean) {
         while (this.mActivities.size > 0) {
-            this.popActivity()
+            this.finishCurrentActivity()
         }
         if (isForceClose) {
             Process.killProcess(Process.myPid())
@@ -42,18 +90,23 @@ class ActivityStack private constructor() {
         }
     }
 
-    private fun popActivity() {
-        if (!this.mActivities.isEmpty()) {
-            //pop栈顶元素出栈
-            (mActivities.pop() as Activity).finish()
-        }
-    }
 
-    fun popAllActivityExceptTop() {
+    fun finishAllActivityExceptCurrent() {
         while (this.mActivities.size > 1) {
             val activity: Activity = this.mActivities[0] as Activity
             this.mActivities.remove(activity)
             activity.finish()
+        }
+    }
+
+    /**
+     * 结束某个Activity之外的所有Activity
+     */
+    fun finishAllActivityExcept(clazz: Class<*>) {
+        for (i in mActivities.indices.reversed()) {
+            if (mActivities[i] != null && mActivities[i]?.javaClass != clazz) {
+                finishActivity(mActivities[i])
+            }
         }
     }
 }

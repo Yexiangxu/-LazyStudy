@@ -7,4 +7,6 @@
 
     <color name="toast_main">#b51d1a1a</color>
     <color name="test">#bc2a2a</color>
+
+    <color name="gray_FFE8E8E8">#FFE8E8E8</color>
 </resources>

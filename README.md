@@ -25,6 +25,9 @@ repositories {
    - window在studio的terminal窗口输入`gradlew dependencyUpdates`命令，会生成`build\dependencyUpdates\report.txt`文件，里面即可查看依赖库更新情况
 
 
+#### 二.使用livedata+viewmodel
+setValue()只能在主线程中调用，postValue()可以在任何线程中调用
+
 -------------------------
 ### 调试
 #### 1. [logger](https://github.com/orhanobut/logger)打印日志
