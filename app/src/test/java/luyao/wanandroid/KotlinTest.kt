@@ -1,28 +1,32 @@
 package luyao.wanandroid
 
-import kotlinx.coroutines.flow.asFlow
-import kotlinx.coroutines.flow.map
-import kotlinx.coroutines.flow.reduce
-import kotlinx.coroutines.runBlocking
+import luyao.wanandroid.enumdemo.Color1
+import luyao.wanandroid.enumdemo.Color2
 import org.junit.Test
 
 
 class KotlinTest {
 
-    @Test
-    fun main() = runBlocking<Unit> {
 
-        val sum = (1..5).asFlow()
-            .map {
-                println("it=$it")
-                it * it } // 数字 1 至 5 的平方
-            .reduce { a, b ->
-                println("a=$a,b=$b")
-                a + b } // 求和（末端操作符）
-        println(sum)
+    fun functionA(funParam: (Int) -> String): String {
+        return funParam(1)
     }
+
+
+
+
 }
 
-
+@Test
+fun main() {
+    colorType(Color1.BLUE)
+}
+fun colorType(colortype:Color1){
+    when(colortype){
+        Color1.BLUE-> println("蓝色代表忧郁")
+        Color1.RED->println("蓝色代表忧郁")
+        Color1.GREEN->println("绿色代表草原")
+    }
+}
 
 
