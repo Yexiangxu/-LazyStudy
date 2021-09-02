@@ -1,8 +1,5 @@
-plugins{
-    id 'com.android.application'
-    id 'kotlin-android'//用于编译Android代码
-    id 'kotlin-kapt'
-}
+apply plugin: 'com.android.application'
+apply from: '../base.gradle'
 //
 //class HenCoderPlugin implements Plugin<Project> {
 //
@@ -19,39 +16,16 @@ plugins{
 //apply plugin: HenCoderPlugin
 
 android {
-
-    compileSdkVersion BuildConfig.compileSdkVersion
-    buildToolsVersion BuildConfig.buildToolsVersion
     defaultConfig {
         applicationId "com.lazyxu.lazystudy"
-        minSdkVersion BuildConfig.minSdkVersion
-        targetSdkVersion BuildConfig.targetSdkVersion
         versionCode BuildConfig.versionCode
         versionName BuildConfig.versionName
-        resConfigs "zh"
-        multiDexEnabled true
-        vectorDrawables.useSupportLibrary = true
-//        ndk {//选择要添加的对应cpu类型的.so库，armeabi-v7a、arm64-v8a这两个占据99%
-//            abiFilters 'armeabi', 'armeabi-v7a', 'arm64-v8a', 'x86'
-//        }
     }
     kapt {
         arguments {
             arg("AROUTER_MODULE_NAME", project.getName())
         }
     }
-    buildFeatures {
-        dataBinding = true // for data binding
-    }
-    compileOptions {
-        sourceCompatibility JavaVersion.VERSION_1_8
-        targetCompatibility JavaVersion.VERSION_1_8
-    }
-
-    kotlinOptions {
-        jvmTarget = JavaVersion.VERSION_1_8.toString()
-    }
-
     //签名
     signingConfigs {
         Properties props = new Properties()
@@ -74,7 +48,6 @@ android {
     }
 
     buildTypes {//buildTypes针对开发测试
-
         debug {
             minifyEnabled false //代码混淆
             shrinkResources false  //移除无用的resource文件

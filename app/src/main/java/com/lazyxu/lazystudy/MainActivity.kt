@@ -1,11 +1,14 @@
 package com.lazyxu.lazystudy
 
 import android.os.Bundle
+import android.util.Base64
+import android.util.Log
 import androidx.appcompat.app.AppCompatActivity
 import androidx.databinding.DataBindingUtil
 import com.alibaba.android.arouter.launcher.ARouter
 import com.lazyxu.base.router.RouterUrl
 import com.lazyxu.lazystudy.databinding.ActivityMainBinding
+import java.nio.charset.Charset
 
 class MainActivity : AppCompatActivity() {
     private lateinit var databinding: ActivityMainBinding
@@ -22,6 +25,46 @@ class MainActivity : AppCompatActivity() {
         databinding = DataBindingUtil.setContentView(this, R.layout.activity_main)
 
         ARouter.getInstance().build(RouterUrl.Film.FILM).navigation()
+        try {
+            val str="Icd2cGCWtP+3ILAn45+C4Nc/gFDutyGohEp7r2E1SNVY1ArdsCxWdTzXSiA="
+//            Log.i("LogTagTest","str=$str")
+            val base64=RC4Utils.Base64Decode(str)
+            Log.i("LogTagTest","base64=$base64")
+            val test = RC4Utils.HloveyRC4(base64, "k8ShsXZR20Ujc9QP")
+            Log.i("LogTagTest", "test=$test")
+
+
+//            val strings = "{\"state\":1,\"set_time\":\"120\",\"no_init\":[\"4\"]}"
+//
+////          val rc4 =   RC4Utils.HloveyRC4("{\"state\":1,\"set_time\":\"120\",\"no_init\":[\"4\"]}", "k8ShsXZR20Ujc9QP")
+//
+//
+//            val rc4Utils =   com.lazyxu.lazystudy.utils.RC4Utils("k8ShsXZR20Ujc9QP".toByteArray(Charset.forName("UTF-8")))
+//
+//            val result =   rc4Utils.encrypt(strings.toByteArray(Charset.forName("UTF-8")))
+//
+//
+//            Log.i("LogTagTest", "result=${result.toString(Charset.forName("UTF-8"))}")
+//
+//            val b64 =  Base64.encode(result, Base64.NO_WRAP)
+//
+//            val res= b64.toString(Charset.forName("UTF-8"))
+//            Log.i("LogTagTest", "b64=$res")
+
+
+
+            val b642 = Base64.decode(str.toByteArray(),Base64.NO_WRAP)
+
+            Log.i("LogTagTest", "b642=${b642}")
+            val rc4Utils2 =   com.lazyxu.lazystudy.utils.RC4Utils("k8ShsXZR20Ujc9QP".toByteArray())
+            val rc4 =  rc4Utils2.decrypt(b642)
+
+
+            Log.i("LogTagTest", "rc4=${rc4.toString(Charset.forName("UTF-8"))}")
+
+        } catch (e: Exception) {
+            Log.i("LogTagTest", "test=$e")
+        }
 //        initView()
     }
 }

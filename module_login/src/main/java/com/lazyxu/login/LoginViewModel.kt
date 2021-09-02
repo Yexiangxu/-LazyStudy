@@ -5,6 +5,7 @@ import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.viewModelScope
 import com.lazyxu.base.base.BaseViewModel
+import com.lazyxu.base.utils.RegexUtils
 import kotlinx.coroutines.delay
 import kotlinx.coroutines.launch
 
@@ -21,5 +22,10 @@ class LoginViewModel : BaseViewModel() {
             delay(8000)
             testLiveData.postValue("我在测试")
         }
+    }
+
+    fun login(phone: String, password: String) {
+        val isUsernameValid =RegexUtils.isValidMobile(phone.trim())
+        val isPassWordValid = password.trim().length >= 6
     }
 }

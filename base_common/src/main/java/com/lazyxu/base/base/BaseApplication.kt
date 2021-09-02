@@ -9,25 +9,25 @@ import android.text.TextUtils
 import android.webkit.WebView
 import androidx.multidex.MultiDex
 import com.alibaba.android.arouter.launcher.ARouter
+import com.facebook.stetho.Stetho
 import com.lazyxu.base.BuildConfig
 import com.lazyxu.base.R
-import com.lazyxu.base.Weak
 import com.lazyxu.base.utils.DeviceUtil
 import com.lazyxu.base.utils.MyCrashHandler
+import com.lazyxu.base.utils.ProcessUtils
+import com.lazyxu.base.utils.SpUtils
 import com.orhanobut.logger.AndroidLogAdapter
 import com.orhanobut.logger.Logger
 import com.squareup.leakcanary.LeakCanary
 import com.squareup.leakcanary.RefWatcher
 import com.tencent.bugly.crashreport.CrashReport
-import java.io.BufferedReader
-import java.io.FileReader
-import java.io.IOException
+import com.tencent.mmkv.MMKV
 
 
 abstract class BaseApplication : Application() {
 
     companion object {
-        var INSTANCE by Weak<Application>()
+        lateinit var INSTANCE: Application
         var refWatcher: RefWatcher? = null
     }
 
@@ -44,12 +44,14 @@ abstract class BaseApplication : Application() {
 
     private fun initSdk() {
         if (BuildConfig.DEBUG) {
-            com.facebook.stetho.Stetho.initializeWithDefaults(this)
-            Logger.addLogAdapter(AndroidLogAdapter())
+            Stetho.initializeWithDefaults(this)//用来调试查看数据库
+            Logger.addLogAdapter(AndroidLogAdapter())//用来查看log日志
+
+
             MyCrashHandler.getInstance().init(this)
             refWatcher = LeakCanary.install(this)
         }
-        if (isMainProcess()) {
+        if (ProcessUtils.isMainProcess(this)) {
             //Bugly  为了保证运营数据的准确性，建议不要在异步线程初始化Bugly
             val deviceID = resources.getStringArray(R.array.developDeviceId)
             val myId = Settings.System.getString(contentResolver, Settings.Secure.ANDROID_ID)
@@ -70,51 +72,26 @@ abstract class BaseApplication : Application() {
                 BuildConfig.DEBUG,
                 strategy
             )
-            //ARouter
-            if (BuildConfig.DEBUG) {
-                ARouter.openLog()    // 打印日志
-                ARouter.openDebug()   // 开启调试模式(如果在InstantRun模式下运行，必须开启调试模式！线上版本需要关闭,否则有安全风险)
-            }
-            ARouter.init(INSTANCE)
-
+            SpUtils.initMMKV(this)
+            initArouter()
         } else {
             if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.P) {
-                WebView.setDataDirectorySuffix(getProcessName(Process.myPid()))
+                WebView.setDataDirectorySuffix(ProcessUtils.getProcessName(Process.myPid()))
             }
         }
-
-
         //LeakCanary
         if (LeakCanary.isInAnalyzerProcess(this)) {
             return
         }
-
     }
 
-    private fun isMainProcess(): Boolean {
-        val processName = getProcessName(Process.myPid())
-        return processName == packageName
-    }
-
-    private fun getProcessName(pid: Int): String {
-        var reader: BufferedReader? = null
-        try {
-            reader = BufferedReader(FileReader("/proc/$pid/cmdline"))
-            var processName = reader.readLine()
-            if (!TextUtils.isEmpty(processName)) {
-                processName = processName.trim { it <= ' ' }
-            }
-            return processName
-        } catch (throwable: Throwable) {
-            throwable.printStackTrace()
-        } finally {
-            try {
-                reader?.close()
-            } catch (exception: IOException) {
-                exception.printStackTrace()
-            }
+    private fun initArouter() {
+        if (BuildConfig.DEBUG) {
+            ARouter.openLog()    // 打印日志
+            ARouter.openDebug()   // 开启调试模式(如果在InstantRun模式下运行，必须开启调试模式！线上版本需要关闭,否则有安全风险)
         }
-        return ""
+        ARouter.init(INSTANCE)
     }
+
 
 }

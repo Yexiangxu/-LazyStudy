@@ -1,12 +1,10 @@
 package com.lazyxu.base.utils
 
-import android.webkit.URLUtil
-
 object H5Util {
     /**
      * eg:删除url中的jumpyket6=2
      */
-    fun deleteKeyAndValue(loadUrl: String,keyAndValue:String): String {
+    fun deleteKeyAndValue(loadUrl: String, keyAndValue: String): String {
         var resultUrl = loadUrl
         when {
             loadUrl.contains("&$keyAndValue") -> resultUrl =

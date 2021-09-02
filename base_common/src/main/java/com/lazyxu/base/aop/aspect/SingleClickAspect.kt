@@ -2,7 +2,7 @@
 //
 //import android.view.View
 //import com.lazyxu.base.R
-//import com.lazyxu.base.utils.LogTags
+//import com.lazyxu.base.log.LogTags
 //import com.orhanobut.logger.Logger
 //import org.aspectj.lang.ProceedingJoinPoint
 //import org.aspectj.lang.annotation.Around

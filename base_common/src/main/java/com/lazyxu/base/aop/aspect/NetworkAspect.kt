@@ -6,7 +6,7 @@
 //import androidx.fragment.app.Fragment
 //import com.lazyxu.base.aop.annotation.CheckNet
 //import com.lazyxu.base.utils.AppToast.show
-//import com.lazyxu.base.utils.LogTags
+//import com.lazyxu.base.log.LogTags
 //import com.lazyxu.base.utils.NetUtils
 //import com.orhanobut.logger.Logger
 //import org.aspectj.lang.ProceedingJoinPoint

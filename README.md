@@ -1,3 +1,14 @@
+#### 资源命名冲突
+问题：组件化中，资源命名冲突是一个比较严重的问题，由于在打包时会进行资源的合并，如果两个模块中有两个相同名字的文件，那么最后只会保留一份
+解决方案：
+在`lib_res`中存放公共res资源文件，其余module中若存在res资源，需要在相应module的build.gradle中添加如下配置
+```
+android {
+    resourcePrefix "前缀_"
+}
+```
+该配置会校验该module中res资源文件命名，如无该前缀，AS就会进行警告提示
+
 #### 一. 使用`buildSrc`全局管理依赖库
 **使用`buildSrc`优点**
 1. 共享 `buildSrc` 库工件的引用，全局只有一个地方可以修改它
@@ -24,7 +35,17 @@ repositories {
 2. **使用[ben-manes的gradle-versions-plugin](https://github.com/ben-manes/gradle-versions-plugin)查看依赖库更新情况**
    - window在studio的terminal窗口输入`gradlew dependencyUpdates`命令，会生成`build\dependencyUpdates\report.txt`文件，里面即可查看依赖库更新情况
 
+#### 二.使用
+1. 仅仅支持绑定 View
+2. 不需要在布局文件中添加`layout`标签
+3. 相比于`kotlin-android-extensions`避免了空异常
+4. 效率高于`DataBinding`，因为避免了与数据绑定相关的开销和性能问题
+5. 需要在模块级`build.gradle`文件中添加`viewBinding = true`即可使用
 
+作者：HiDhl
+链接：https://juejin.cn/post/6913723416671420430
+来源：掘金
+著作权归作者所有。商业转载请联系作者获得授权，非商业转载请注明出处。
 #### 二.使用livedata+viewmodel
 setValue()只能在主线程中调用，postValue()可以在任何线程中调用
 

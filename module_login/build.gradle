@@ -1,64 +1,15 @@
 apply plugin: 'com.android.library'
-apply plugin: 'kotlin-android'
-apply plugin: 'kotlin-kapt'
+apply from: '../base.gradle'
 android {
-    compileSdkVersion BuildConfig.compileSdkVersion
-    buildToolsVersion BuildConfig.buildToolsVersion
-    defaultConfig {
-        minSdkVersion BuildConfig.minSdkVersion
-        targetSdkVersion BuildConfig.targetSdkVersion
-        versionCode 1
-        versionName "1.0"
-        resConfigs "zh"
-        multiDexEnabled true
-        vectorDrawables.useSupportLibrary = true
-//        ndk {//选择要添加的对应cpu类型的.so库，armeabi-v7a、arm64-v8a这两个占据99%
-//            abiFilters 'armeabi', 'armeabi-v7a', 'arm64-v8a','x86'
-//        }
-    }
     kapt {
         arguments {
             arg("AROUTER_MODULE_NAME", project.getName())
         }
     }
-    buildFeatures{
-        dataBinding = true
-    }
-    compileOptions {
-        sourceCompatibility JavaVersion.VERSION_1_8
-        targetCompatibility JavaVersion.VERSION_1_8
-    }
-
-    kotlinOptions {
-        jvmTarget = JavaVersion.VERSION_1_8.toString()
-    }
-    buildTypes {
-        release {
-            minifyEnabled false
-            proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
-        }
-    }
-//    sourceSets {
-//        main {
-//            if (rootProject.ext.isModule) {
-//                manifest.srcFile 'src/main/module/AndroidManifest.xml'
-//            } else {
-//                manifest.srcFile 'src/main/AndroidManifest.xml'
-//                //集成开发模式下排除debug文件夹中的所有Java文件
-//                java {
-//                    exclude 'debug/**'
-//                }
-//            }
-//        }
-//    }
-
-
 }
 
 dependencies {
     implementation fileTree(dir: 'libs', include: ['*.jar', '*.aar'])
     kapt ArouterDeps.arouterCompiler
     implementation project(':base_common')
-
-
 }

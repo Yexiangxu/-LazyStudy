@@ -3,14 +3,14 @@ package com.lazyxu.login
 import com.alibaba.android.arouter.facade.annotation.Route
 import com.alibaba.android.arouter.launcher.ARouter
 import com.lazyxu.base.base.BaseVmDbActivity
+import com.lazyxu.base.ext.observe
 import com.lazyxu.base.router.RouterUrl
 import com.lazyxu.login.databinding.ActivityLoginBinding
 
 
 @Route(path = RouterUrl.User.LOGIN)
 class LoginActivity :
-    BaseVmDbActivity<LoginViewModel, ActivityLoginBinding>()//, CoroutineScope by MainScope()
-{
+    BaseVmDbActivity<LoginViewModel, ActivityLoginBinding>() {//, CoroutineScope by MainScope()
 
     override fun layoutId() = R.layout.activity_login
     override fun initView() {
@@ -32,6 +32,11 @@ class LoginActivity :
         mViewModel.loginLiveData.observe(this, {
 
         })
+        observe(mViewModel.loginLiveData, ::handlerLoginResult)
+    }
+
+    private fun handlerLoginResult(loginEntity: LoginEntity) {
+
     }
 
 
