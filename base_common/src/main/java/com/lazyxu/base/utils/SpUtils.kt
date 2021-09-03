@@ -5,9 +5,6 @@ import com.tencent.mmkv.MMKV
 
 /**
  * MMKV使用封装
- *
- * @author Qu Yunshuo
- * @since 8/28/20
  */
 object SpUtils {
 
@@ -17,7 +14,7 @@ object SpUtils {
     fun initMMKV(context: Context): String? = MMKV.initialize(context)
 
     /**
-     * 保存数据（简化）
+     * 增、改
      * 根据value类型自动匹配需要执行的方法
      */
     fun put(key: String, value: Any) =
@@ -31,7 +28,9 @@ object SpUtils {
             else -> false
         }
 
-
+    /**
+     * 查
+     */
     fun getString(key: String, defValue: String): String? =
         MMKV.defaultMMKV()?.decodeString(key, defValue)
 
@@ -49,4 +48,13 @@ object SpUtils {
         MMKV.defaultMMKV()?.decodeBool(key, defValue)
 
     fun contains(key: String): Boolean? = MMKV.defaultMMKV()?.contains(key)
+
+
+    /**
+     * 删
+     */
+    fun remove(key: String) = MMKV.defaultMMKV()?.removeValueForKey(key)
+    fun remove(vararg key: String) = MMKV.defaultMMKV()?.removeValuesForKeys(key)
+    fun clearAll() = MMKV.defaultMMKV()?.clearAll()
+
 }

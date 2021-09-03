@@ -1,6 +1,7 @@
 package com.lazyxu.lazystudy
 
 import android.os.Bundle
+import android.os.FileUtils
 import android.util.Base64
 import android.util.Log
 import androidx.appcompat.app.AppCompatActivity
@@ -8,6 +9,7 @@ import androidx.databinding.DataBindingUtil
 import com.alibaba.android.arouter.launcher.ARouter
 import com.lazyxu.base.router.RouterUrl
 import com.lazyxu.lazystudy.databinding.ActivityMainBinding
+import java.io.File
 import java.nio.charset.Charset
 
 class MainActivity : AppCompatActivity() {
@@ -25,6 +27,7 @@ class MainActivity : AppCompatActivity() {
         databinding = DataBindingUtil.setContentView(this, R.layout.activity_main)
 
         ARouter.getInstance().build(RouterUrl.Film.FILM).navigation()
+
         try {
             val str="Icd2cGCWtP+3ILAn45+C4Nc/gFDutyGohEp7r2E1SNVY1ArdsCxWdTzXSiA="
 //            Log.i("LogTagTest","str=$str")
